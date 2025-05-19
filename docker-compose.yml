@@ -1,0 +1,60 @@
+services:
+  keycloak:
+    image: quay.io/keycloak/keycloak:latest
+    container_name: keycloak
+    restart: unless-stopped
+    command:
+      - start-dev
+      - "--db=${DB_TYPE:-postgres}"
+      - "--db-url-host=db"
+      - "--db-url-database=${POSTGRES_DB:-keycloak}"
+      - "--db-username=${POSTGRES_USER:-keycloak}"
+      - "--db-password=${POSTGRES_PASSWORD:-keycloak}"
+      - "--hostname=${KEYCLOAK_FRONTEND_URL:-keycloak.example.com}"
+      - "--hostname-strict=false"
+      - "--http-enabled=true"
+    environment:
+      KEYCLOAK_ADMIN: ${KEYCLOAK_ADMIN}
+      KEYCLOAK_ADMIN_PASSWORD: ${KEYCLOAK_ADMIN_PASSWORD}
+      KEYCLOAK_FRONTEND_URL: ${KEYCLOAK_FRONTEND_URL}
+      PROXY_ADDRESS_FORWARDING: true
+      KC_PROXY_HEADERS: xforwarded
+      KC_SPI_THEME_CACHE_THEMES: false
+      KC_SPI_THEME_CACHE_TEMPLATES: false
+
+
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./themes/customtheme:/opt/keycloak/themes/customtheme
+      - ./keycloak-providers:/opt/keycloak/providers
+
+    networks:
+      - npm_network
+  db:
+    image: postgres:15
+    container_name: keycloak_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: keycloak
+      POSTGRES_USER: keycloak
+      POSTGRES_PASSWORD: keycloak
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U keycloak"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    ports:
+      - "5490:5432"
+    volumes:
+      - keycloak_db_data:/var/lib/postgresql/data
+    networks:
+      - npm_network
+
+networks:
+  npm_network:
+    external: true
+    name: nginx-proxy-manager_default
+volumes:
+  keycloak_db_data:
