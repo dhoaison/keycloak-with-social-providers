@@ -2,7 +2,7 @@
 <html lang="${locale}">
 <head>
   <meta charset="UTF-8">
-  <title>${realm.displayName!realm.name} – Reset Password</title>
+  <title>${realm.displayName!realm.name} – Forgot Password</title>
   <style>
     /* Add your custom CSS styles here */
     body {
@@ -13,9 +13,12 @@
       align-items: center;
       height: 100vh;
       margin: 0;
+      background:url('${url.resourcesPath}/img/login_bg.png') center/contain no-repeat;
     }
     .container {
       background-color: #fff;
+      display: flex;
+      flex-direction: column;
       padding: 20px;
       border-radius: 8px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -35,11 +38,12 @@
       color: #555;
     }
     input[type="text"] {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+}
     .error-message {
       color: #d9534f;
       font-size: 0.875em;
@@ -57,7 +61,7 @@
       text-decoration: underline;
     }
     .submit-btn {
-      background-color: #007bff;
+      background-color: #000;
       color: #fff;
       border: none;
       padding: 10px 20px;
@@ -72,7 +76,6 @@
 <body>
   <div class="container">
     <h1>${msg("emailForgotTitle")}</h1>
-    <p>${msg("emailInstruction")}</p>
     <form id="kc-reset-password-form" action="${url.loginAction}" method="post">
       <div class="form-group">
         <label for="username">${msg("usernameOrEmail")}</label>

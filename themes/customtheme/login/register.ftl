@@ -5,7 +5,8 @@
   <title>${realm.displayName!realm.name} – Register</title>
   <style>
     /* Add your custom CSS styles here */
-* {
+{
+
   box-sizing: border-box;
 }
 
@@ -18,6 +19,7 @@ body {
   margin: 0;
   padding: 0;
   min-height: 100vh;
+        background:url('${url.resourcesPath}/img/login_bg.png') center/contain no-repeat;
 }
 
 .container {
