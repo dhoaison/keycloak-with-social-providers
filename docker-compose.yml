@@ -22,13 +22,13 @@ services:
       KC_SPI_THEME_CACHE_THEMES: false
       KC_SPI_THEME_CACHE_TEMPLATES: false
 
-
     depends_on:
       db:
         condition: service_healthy
     volumes:
       - ./themes/customtheme:/opt/keycloak/themes/customtheme
       - ./keycloak-providers:/opt/keycloak/providers
+      - ./keycloak-spi/target/keycloak-spi.jar:/opt/keycloak/providers/keycloak-spi.jar:ro
 
     networks:
       - npm_network
