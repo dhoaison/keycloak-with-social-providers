@@ -1,7 +1,7 @@
 # ![My Animation](assets/demo.gif)
 # ![Identity provider](assets/demo1.png)
 
-# 🔐 Keycloak: Google & Apple Identity Provider Integration
+# 🔐 Keycloak: Google & Apple Identity Provider Integration with custom UI
 
 This project demonstrates how to integrate Google Sign-In and Apple Sign-In into Keycloak, both locally and in Docker, using the [Apple Identity Provider for Keycloak](https://github.com/klausbetz/apple-identity-provider-keycloak).
 
