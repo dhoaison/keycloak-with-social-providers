@@ -12,9 +12,6 @@ This project demonstrates how to integrate Google Sign-In and Apple Sign-In into
 - [Prerequisites](#prerequisites)  
 - [Google Integration](#google-integration)  
 - [Apple Integration](#apple-integration)  
-- [Running with Docker](#running-with-docker)  
-- [License](#license)  
-
 ---
 ## 🎯 Overview
 
