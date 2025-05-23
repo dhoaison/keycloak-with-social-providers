@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <title>Reset Your Password</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 20px; }
+    body { background:url('${url.resourcesPath}/img/login_bg.png');font-family: Arial, sans-serif; margin: 0; padding: 20px; }
     .container { max-width: 600px; margin: auto; }
     .btn { display: inline-block; padding: 10px 20px; background: #2a73cc; color: #fff; text-decoration: none; border-radius: 4px; }
   </style>
