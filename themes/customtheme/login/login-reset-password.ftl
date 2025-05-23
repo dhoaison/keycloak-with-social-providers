@@ -54,7 +54,6 @@
       align-items: center;
     }
     .form-actions a {
-      color: #007bff;
       text-decoration: none;
     }
     .form-actions a:hover {
