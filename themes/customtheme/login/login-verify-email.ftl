@@ -2,31 +2,87 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>${msg("emailVerifyTitle")}</title>
     <style>
-        body { 
-         background:url('${url.resourcesPath}/img/login_bg.png') center/contain no-repeat;
-        font-family: Arial, sans-serif; background: #f8f8f9; }
-        .container { max-width: 400px; margin: 80px auto; background: #fff; padding: 2em; border-radius: 8px; box-shadow: 0 0 10px #ccc;}
-        label { margin-bottom: 4px; }
-        button { padding: 10px 14px; background: #000; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight:bold;}
-        button:hover { background: #171717;}
-        .header { text-align: center; margin-bottom: 24px; }
-        form {
-        display: flex;
-        align-items: center;
-        justify-content: center
+        body {
+            background: #f8f8f9;
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 400px;
+            width: 90%;
+            background: #fff;
+            padding: 2em;
+            border-radius: 12px;
+            box-shadow: 0 0 16px rgba(0, 0, 0, 0.06);
+            text-align: center;
+        }
+
+        .message {
+            font-size: 1.05em;
+            color: #444;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        button {
+            padding: 12px 24px;
+            background: #000;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1em;
+            transition: background 0.2s;
+        }
+
+        button:disabled {
+            background: #666;
+            cursor: not-allowed;
+        }
+
+        button:hover:not(:disabled) {
+            background: #171717;
+        }
+
+        #countdown {
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <h2>${msg("emailVerifyTitle")}</h2>
-        </div>
-        <form id="kc-verify-email-form" action="${url.loginAction}" method="post">
-            <button id="kc-resend-email" name="resend" value="true">${msg("resendEmail")}</button>
+        <p class="message">
+            We've already sent a verification email to your address.<br>
+            Please check your inbox (and spam folder) to complete your verification.<br>
+            You can resend the email in <span id="countdown">30</span> seconds.
+        </p>
+        <form action="/resend-verification" method="post">
+            <button id="resend-btn" name="resend" value="true" disabled>Resend Email</button>
         </form>
     </div>
+
+    <script>
+        let seconds = 30;
+        const countdownEl = document.getElementById('countdown');
+        const button = document.getElementById('resend-btn');
+
+        const timer = setInterval(() => {
+            seconds--;
+            countdownEl.textContent = seconds;
+
+            if (seconds <= 0) {
+                clearInterval(timer);
+                button.disabled = false;
+                countdownEl.parentNode.removeChild(countdownEl); // Optional: remove countdown once it's done
+            }
+        }, 1000);
+    </script>
 </body>
 </html>

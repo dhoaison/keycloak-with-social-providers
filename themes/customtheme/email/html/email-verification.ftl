@@ -9,6 +9,7 @@
       font-family: 'Segoe UI', Arial, sans-serif;
       margin: 0;
       min-height: 100vh;
+      background-color: #f4f6fc;
     }
     .art-bg {
       position: fixed;
@@ -24,6 +25,8 @@
       text-align: center;
       position: relative;
       z-index: 1;
+      background: #ffffff;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
     }
     h1 {
       color: #304269;
@@ -46,16 +49,16 @@
       padding: 15px 44px;
       font-size: 1.125em;
       font-weight: 600;
-      color: #fff;
-      background: linear-gradient(90deg, #4f8ffd 0%, #b97ffe 100%);
+      color: #ffffff;
+      background-color: #000000;
       border-radius: 32px;
       text-decoration: none;
-      box-shadow: 0 2px 12px 0 rgba(90,127,240,0.15);
-      transition: background 0.2s;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+      transition: background-color 0.2s, color 0.2s;
     }
     .btn:hover {
-      background: linear-gradient(90deg, #2b54a6 0%, #7e37be 100%);
-      color: #eaf2fd;
+      background-color: #333333;
+      color: #f5f5f5;
     }
     .footer {
       margin-top: 2.2em;
@@ -80,11 +83,15 @@
 <body>
   <div class="art-bg"></div>
   <div class="container">
-    <h1>${msg("emailVerificationTitle", "Verify Your Email")}</h1>
-    <p>${msg("emailVerificationBody")}</p>
-    <a class="btn" href="${link}">${msg("emailVerificationLinkText", "Verify Email")}</a>
+    <h1>Verify Your Email Address</h1>
+    <p>
+      Thank you for registering with <strong>Gnosis TMS</strong>.<br>
+      To activate your account and get started, please verify your email address by clicking the button below.
+    </p>
+    <a class="btn" href="https://your-verification-link.com">Verify Email</a>
     <div class="footer">
-      ${msg("signature")}
+      Best regards,<br>
+      The Gnosis TMS Team
     </div>
   </div>
 </body>
