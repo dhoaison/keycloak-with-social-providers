@@ -113,11 +113,11 @@
                         <span class="subtitle"><span class="required">*</span> ${msg("requiredFields")}</span>
                     </div>
                     <div class="col-md-10">
-                        <h1 id="kc-page-title"><#nested "header"></h1>
+                         <div></div>
                     </div>
                 </div>
             <#else>
-                <h1 id="kc-page-title"><#nested "header"></h1>
+                <div></div>
             </#if>
         <#else>
             <#if displayRequiredFields>
