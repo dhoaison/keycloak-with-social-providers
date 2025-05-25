@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <title>${realm.displayName!realm.name} – Forgot Password</title>
   <style>
-    /* Add your custom CSS styles here */
     body {
       font-family: Arial, sans-serif;
       background-color: #f4f4f4;
@@ -13,8 +12,9 @@
       align-items: center;
       height: 100vh;
       margin: 0;
-      background:url('${url.resourcesPath}/img/login_bg.png') center/contain no-repeat;
+      background: url('${url.resourcesPath}/img/login_bg.png') center/contain no-repeat;
     }
+
     .container {
       background-color: #fff;
       display: flex;
@@ -25,40 +25,51 @@
       width: 100%;
       max-width: 400px;
     }
+
     h1 {
       text-align: center;
       color: #333;
     }
+
     .form-group {
       margin-bottom: 15px;
     }
+
     label {
       display: block;
       margin-bottom: 5px;
       color: #555;
     }
+
     input[type="text"] {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  width: 100%;
-  box-sizing: border-box;
-}
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
     .error-message {
       color: #d9534f;
       font-size: 0.875em;
     }
+
     .form-actions {
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
+
     .form-actions a {
+      color: #000;
       text-decoration: none;
+      font-weight: 500;
     }
+
     .form-actions a:hover {
       text-decoration: underline;
     }
+
     .submit-btn {
       background-color: #000;
       color: #fff;
@@ -67,8 +78,9 @@
       border-radius: 4px;
       cursor: pointer;
     }
+
     .submit-btn:hover {
-      background-color: #0056b3;
+      background-color: #222;
     }
   </style>
 </head>

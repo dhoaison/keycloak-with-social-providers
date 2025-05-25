@@ -4,92 +4,114 @@
   <meta charset="UTF-8">
   <title>${realm.displayName!realm.name} – Register</title>
   <style>
-    /* Add your custom CSS styles here */
-{
+    * { box-sizing: border-box; }
 
-  box-sizing: border-box;
-}
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      background: url('${url.resourcesPath}/img/login_bg.png') center/contain no-repeat;
+    }
 
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0;
-  padding: 0;
-  min-height: 100vh;
-        background:url('${url.resourcesPath}/img/login_bg.png') center/contain no-repeat;
-}
+    .container {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+      margin: 5rem;
+    }
 
-.container {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 400px;
-  margin: 5rem; /* fixed spacing syntax */
-}
+    h1 {
+      text-align: center;
+      color: #333;
+    }
 
-h1 {
-  text-align: center;
-  color: #333;
-}
+    .form-group {
+      margin-bottom: 15px;
+    }
 
-.form-group {
-  margin-bottom: 15px;
-}
+    label {
+      display: block;
+      margin-bottom: 5px;
+      color: #555;
+    }
 
-label {
-  display: block;
-  margin-bottom: 5px;
-  color: #555;
-}
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
 
-input[type="text"],
-input[type="email"],
-input[type="password"] {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box; /* Ensure no overflow */
-}
+    .error-message {
+      color: #d9534f;
+      font-size: 0.875em;
+    }
 
-.error-message {
-  color: #d9534f;
-  font-size: 0.875em;
-}
+    .form-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-.form-actions {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+    .form-actions a {
+      color: #000;
+      text-decoration: none;
+      font-weight: bold;
+    }
 
-.form-actions a {
-  color: #007bff;
-  text-decoration: none;
-}
+    .form-actions a:hover {
+      text-decoration: underline;
+    }
 
-.form-actions a:hover {
-  text-decoration: underline;
-}
+    .submit-btn {
+      background-color: #000;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      position: relative;
+      transition: background 0.3s;
+    }
 
-.submit-btn {
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 4px;
-  cursor: pointer;
-}
+    .submit-btn:hover {
+      background-color: #222;
+    }
 
-.submit-btn:hover {
-  background-color: #0056b3;
-}
+    /* Spinner Loading State */
+    .submit-btn.loading {
+      color: transparent !important;
+      pointer-events: none;
+    }
 
+    .submit-btn.loading::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 16px;
+      height: 16px;
+      margin: -8px 0 0 -8px;
+      border: 2px solid #fff;
+      border-top: 2px solid transparent;
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
   </style>
 </head>
 <body>
@@ -144,5 +166,16 @@ input[type="password"] {
       </div>
     </form>
   </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const form = document.getElementById("kc-register-form");
+      const submitBtn = form.querySelector(".submit-btn");
+
+      form.addEventListener("submit", function () {
+        submitBtn.classList.add("loading");
+      });
+    });
+  </script>
 </body>
 </html>
