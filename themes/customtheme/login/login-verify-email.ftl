@@ -63,7 +63,7 @@
             Please check your inbox (and spam folder) to complete your verification.<br>
             You can resend the email in <span id="countdown">30</span> seconds.
         </p>
-        <form action="/resend-verification" method="post">
+        <form action="${url.loginAction}" method="post">
             <button id="resend-btn" name="resend" value="true" disabled>Resend Email</button>
         </form>
     </div>

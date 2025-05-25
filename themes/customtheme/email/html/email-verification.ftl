@@ -88,7 +88,7 @@
       Thank you for registering with <strong>Gnosis TMS</strong>.<br>
       To activate your account and get started, please verify your email address by clicking the button below.
     </p>
-    <a class="btn" href="https://your-verification-link.com">Verify Email</a>
+    <a class="btn" href="${link}">${msg("emailVerificationLinkText", "Verify Email")}</a>
     <div class="footer">
       Best regards,<br>
       The Gnosis TMS Team

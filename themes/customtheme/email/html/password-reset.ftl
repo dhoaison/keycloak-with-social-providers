@@ -165,7 +165,7 @@
       If this was you, please click the button below to create a new password.
     </p>
 
-    <a href="https://your-reset-link.com" class="btn">Reset Password</a>
+    <a  href="${link?string}"  class="btn">Reset Password</a>
 
     <p class="secondary">
       If you did not request a password reset, you can safely ignore this message. Your password will remain unchanged.
