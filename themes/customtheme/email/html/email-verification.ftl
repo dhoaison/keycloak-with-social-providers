@@ -43,20 +43,20 @@
       margin-top: 18px;
       margin-bottom: 0.7em;
     }
-    .btn {
+    .btn-verify {
       display: inline-block;
       margin: 26px 0 24px 0;
       padding: 15px 44px;
       font-size: 1.125em;
       font-weight: 600;
-      color: #ffffff;
+      color: #ffffff !important;
       background-color: #000000;
       border-radius: 32px;
       text-decoration: none;
       box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
       transition: background-color 0.2s, color 0.2s;
     }
-    .btn:hover {
+    .btn-verify:hover {
       background-color: #333333;
       color: #f5f5f5;
     }
@@ -88,7 +88,7 @@
       Thank you for registering with <strong>Gnosis TMS</strong>.<br>
       To activate your account and get started, please verify your email address by clicking the button below.
     </p>
-    <a class="btn" href="${link}">${msg("emailVerificationLinkText", "Verify Email")}</a>
+    <a class="btn-verify"  href="${link}">${msg("emailVerificationLinkText", "Verify Email")}</a>
     <div class="footer">
       Best regards,<br>
       The Gnosis TMS Team
