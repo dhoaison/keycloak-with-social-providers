@@ -82,6 +82,28 @@
     .submit-btn:hover {
       background-color: #222;
     }
+
+    .toast {
+      visibility: hidden;
+      min-width: 220px;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      border-radius: 6px;
+      padding: 12px 20px;
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 999;
+      transition: visibility 0s, opacity 0.3s ease;
+      opacity: 0;
+    }
+
+    .toast.show {
+      visibility: visible;
+      opacity: 1;
+    }
   </style>
 </head>
 <body>
@@ -91,9 +113,7 @@
       <div class="form-group">
         <label for="username">${msg("usernameOrEmail")}</label>
         <input type="text" id="username" name="username" value="${(auth.attemptedUsername!'')}" required>
-        <#if messagesPerField.existsError('username')>
-          <div class="error-message">${kcSanitize(messagesPerField.get('username'))?no_esc}</div>
-        </#if>
+        <div class="error-message" id="error-message" style="display:none;"></div>
       </div>
       <div class="form-actions">
         <a href="${url.loginUrl}">${msg("backToLogin")}</a>
@@ -101,5 +121,43 @@
       </div>
     </form>
   </div>
+
+  <div id="toast" class="toast">Reset email sent successfully.</div>
+
+  <script>
+    const form = document.getElementById('kc-reset-password-form');
+    const usernameInput = document.getElementById('username');
+    const errorDiv = document.getElementById('error-message');
+    const toast = document.getElementById('toast');
+
+    form.addEventListener('submit', function (e) {
+      const email = usernameInput.value.trim();
+      const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+      if (!email) {
+        e.preventDefault();
+        errorDiv.textContent = "Email is required.";
+        errorDiv.style.display = "block";
+        return;
+      }
+
+      if (!isValidEmail) {
+        e.preventDefault();
+        errorDiv.textContent = "Please enter a valid email address.";
+        errorDiv.style.display = "block";
+        return;
+      }
+
+      errorDiv.style.display = "none";
+
+      // Show toast before submitting
+      e.preventDefault(); // prevent immediate submission
+      toast.classList.add("show");
+
+      setTimeout(() => {
+        form.submit(); // submit after toast
+      }, 1000);
+    });
+  </script>
 </body>
 </html>
