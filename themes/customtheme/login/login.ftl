@@ -73,7 +73,7 @@
     button.primary {
       height: var(--field-h);
       width:100%;
-      background: var(--button-bg);
+      background: #3366FF;
       color: #FFF;
       font-size:1rem;
       font-weight:600;
@@ -128,29 +128,28 @@
       height: 20px;
       margin-right: 0.75rem;
     }
-    .btn-social.facebook { 
-      background: #4267b2; color: #fff; border-color: #4267b2;
-    }
-    .btn-social.facebook:hover {
-      border-color: #4267b2;
-      color: #000;
-      background: #fff
-    }
-    .btn-social.google {
-    border-color: #db4437;
-       color: #000;
-      background: #fff
-     }
-    .btn-social.google:hover {
-      background: #db4437; color: #fff; border-color: #db4437;
-    }
+       .btn-social.facebook {
+  background: #fff;
+  color: #212B36;
+}
+.btn-social.facebook:hover {
+  background: #d6d4d4;
+}
+
+.btn-social.google {
+  background: #fff;
+  color: ##212B36;
+}
+.btn-social.google:hover {
+  background: #d6d4d4;
+}
+
      .btn-social.apple {
-    border-color: #000;
-      background: #000;
-       color: #fff;
+    background: #fff;
+  color: #212B36;
      }
     .btn-social.apple:hover {
-      background: #d1d1d1; color: #000; border-color: #d1d1d1;
+      background: #d6d4d4
     }
  
 .sign-up-btn {
@@ -176,7 +175,11 @@
   justify-content: space-between;
   font-size: 0.875rem;
   color: var(--text);
-}
+  }
+  .no-account {
+    color: #637381
+    }
+
 
     .links a:hover { color: var(--button-hover) }
   </style>
@@ -191,7 +194,7 @@
 <body>
   <div class="card">
     <img src="${url.resourcesPath}/img/logo.png" alt="Logo" class="logo"/>
-    <h1>${realm.displayName!realm.name} TMS Login</h1>
+    <h1>Sign in to Gnosis TMS</h1>
 
     <form action="${url.loginAction}" method="post" onsubmit="return disableLogin()">
       <input id="username" name="username" type="text"
@@ -199,7 +202,7 @@
              autocomplete="username" required autofocus />
       <input id="password" name="password" type="password"
              placeholder="Password" autocomplete="current-password" required />
-      <button id="kc-login" class="primary" type="submit">Log In</button>
+      <button id="kc-login" class="primary" type="submit">Sign In</button>
     </form>
     <div class="links">
     <div >
@@ -238,7 +241,7 @@
     </#if>
 <#if realm.registrationAllowed>
     <div class="register-wrapper">
-    Don't have an account?
+    <span class="no-account">Don't have an account?</span>
     <a href="${url.registrationUrl}" class="sign-up-btn">Sign up</a>
     </div>
   </#if>
