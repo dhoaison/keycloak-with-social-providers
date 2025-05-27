@@ -227,13 +227,18 @@
                     aria-label="Continue with ${idp.displayName}">
                    <img
             src="<#if idp.alias == 'apple'>
-                   https://cdn.simpleicons.org/apple/FFFFFF
+                  https://img.icons8.com/?size=100&id=30840&format=png&color=000000
                  <#else>
                    ${url.resourcesPath}/img/${idp.alias}.svg
                  </#if>"
             alt="${idp.alias} icon"
             class="btn-social-icon"/>
-                  <span>${idp.displayName}</span>
+
+                              <span><#if idp.alias == 'apple'>
+                              Continue with Apple
+                 <#else>
+                 ${idp.displayName}
+                 </#if></span>
             </button>
           </form>
         </#list>
