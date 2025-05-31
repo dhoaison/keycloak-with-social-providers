@@ -86,7 +86,7 @@
               transition: background 0.17s;
             ">${kcSanitize(msg("proceedWithAction"))?no_esc}</a>
           <#elseif client.baseUrl?has_content>
-            <a href="${client.baseUrl}" style="
+            <a href="${client.baseUrl}?redirect_uri=https://keycloak-dev.gnosis-tms.com/" style="
               display: inline-block;
               margin-top: 28px;
               background: #000;
