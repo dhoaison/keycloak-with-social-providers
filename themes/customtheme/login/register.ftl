@@ -120,7 +120,7 @@
     <h1>${msg("registerTitle")}</h1>
     <form id="kc-register-form" action="${url.registrationAction}" method="post">
       <div class="form-group">
-        <label for="name">${msg("name")}</label>
+        <label for="name">Name</label>
         <input type="text" id="name" name="name" value="${(register.formData.name!'')}" required>
         <#if messagesPerField.existsError('name')>
           <div class="error-message">${kcSanitize(messagesPerField.get('name'))?no_esc}</div>
