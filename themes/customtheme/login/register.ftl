@@ -50,6 +50,7 @@
       padding: 10px;
       border: 1px solid #ccc;
       border-radius: 4px;
+      font-size: 16px;
     }
 
     .error-message {
@@ -119,19 +120,15 @@
     <h1>${msg("registerTitle")}</h1>
     <form id="kc-register-form" action="${url.registrationAction}" method="post">
       <div class="form-group">
-        <label for="firstName">${msg("firstName")}</label>
-        <input type="text" id="firstName" name="firstName" value="${(register.formData.firstName!'')}" required>
-        <#if messagesPerField.existsError('firstName')>
-          <div class="error-message">${kcSanitize(messagesPerField.get('firstName'))?no_esc}</div>
+        <label for="name">${msg("name")}</label>
+        <input type="text" id="name" name="name" value="${(register.formData.name!'')}" required>
+        <#if messagesPerField.existsError('name')>
+          <div class="error-message">${kcSanitize(messagesPerField.get('name'))?no_esc}</div>
         </#if>
       </div>
-      <div class="form-group">
-        <label for="lastName">${msg("lastName")}</label>
-        <input type="text" id="lastName" name="lastName" value="${(register.formData.lastName!'')}" required>
-        <#if messagesPerField.existsError('lastName')>
-          <div class="error-message">${kcSanitize(messagesPerField.get('lastName'))?no_esc}</div>
-        </#if>
-      </div>
+      <!-- Hidden fields for firstName and lastName -->
+      <input type="hidden" id="firstName" name="firstName" value="${(register.formData.firstName!'')}">
+      <input type="hidden" id="lastName" name="lastName" value="${(register.formData.lastName!'')}">
       <div class="form-group">
         <label for="email">${msg("email")}</label>
         <input type="email" id="email" name="email" value="${(register.formData.email!'')}" required>
@@ -171,8 +168,22 @@
     document.addEventListener("DOMContentLoaded", function () {
       const form = document.getElementById("kc-register-form");
       const submitBtn = form.querySelector(".submit-btn");
+      const nameInput = document.getElementById("name");
+      const firstNameInput = document.getElementById("firstName");
+      const lastNameInput = document.getElementById("lastName");
 
-      form.addEventListener("submit", function () {
+      form.addEventListener("submit", function (e) {
+        // Split the full name into first and last name
+        const nameParts = nameInput.value.trim().split(/\s+/);
+        if (nameParts.length >= 2) {
+          firstNameInput.value = nameParts[0];
+          lastNameInput.value = nameParts.slice(1).join(" ");
+        } else {
+          // If only one word is entered, use it as firstName and set lastName as empty
+          firstNameInput.value = nameParts[0];
+          lastNameInput.value = "";
+        }
+        
         submitBtn.classList.add("loading");
       });
     });
