@@ -1,192 +1,164 @@
 <!DOCTYPE html>
 <html lang="${locale}">
 <head>
-  <meta charset="UTF-8">
-  <title>${realm.displayName!realm.name} – Register</title>
-  <style>
-    * { box-sizing: border-box; }
-
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin: 0;
-      padding: 0;
-      min-height: 100vh;
-      background: url('${url.resourcesPath}/img/login_bg.png') center/contain no-repeat;
-    }
-
-    .container {
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      width: 100%;
-      max-width: 400px;
-      margin: 5rem;
-    }
-
-    h1 {
-      text-align: center;
-      color: #333;
-    }
-
-    .form-group {
-      margin-bottom: 15px;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 5px;
-      color: #555;
-    }
-
-    input[type="text"],
-    input[type="email"],
-    input[type="password"] {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      font-size: 16px;
-    }
-
-    .error-message {
-      color: #d9534f;
-      font-size: 0.875em;
-    }
-
-    .form-actions {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .form-actions a {
-      color: #000;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .form-actions a:hover {
-      text-decoration: underline;
-    }
-
-    .submit-btn {
-      background-color: #3366FF;
-      color: #fff;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 4px;
-      cursor: pointer;
-      font-weight: bold;
-      position: relative;
-      transition: background 0.3s;
-    }
-
-    .submit-btn:hover {
-      background-color: #222;
-    }
-
-    /* Spinner Loading State */
-    .submit-btn.loading {
-      color: transparent !important;
-      pointer-events: none;
-    }
-
-    .submit-btn.loading::after {
-      content: "";
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 16px;
-      height: 16px;
-      margin: -8px 0 0 -8px;
-      border: 2px solid #fff;
-      border-top: 2px solid transparent;
-      border-radius: 50%;
-      animation: spin 0.6s linear infinite;
-    }
-
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-  </style>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>${msg("registerTitle")}</title>
+    <style>
+        body { 
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #f5f6fa;
+        }
+        .register-container {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.05);
+            width: 100%;
+            max-width: 400px;
+            box-sizing: border-box;
+        }
+        .logo {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .logo img {
+            max-width: 150px;
+            height: auto;
+        }
+        h1 {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 600;
+            margin: 0 0 2rem;
+            color: #1a1a1a;
+        }
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #e1e1e1;
+            border-radius: 8px;
+            font-size: 1rem;
+            box-sizing: border-box;
+            transition: border-color 0.2s;
+        }
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="password"]:focus {
+            outline: none;
+            border-color: #4763E4;
+        }
+        .register-button {
+            width: 100%;
+            padding: 0.875rem;
+            background: #4763E4;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-top: 1rem;
+        }
+        .register-button:hover {
+            background: #3951cc;
+        }
+        .login-link {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+        .login-link a {
+            color: #4763E4;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+        .alert {
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            background: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeeba;
+        }
+    </style>
+    <script>
+        function copyEmailToUsername() {
+            const emailInput = document.getElementById('email');
+            const usernameInput = document.getElementById('username');
+            usernameInput.value = emailInput.value;
+            return true;
+        }
+    </script>
 </head>
 <body>
-  <div class="container">
-    <h1>${msg("registerTitle")}</h1>
-    <form id="kc-register-form" action="${url.registrationAction}" method="post">
-      <div class="form-group">
-        <label for="name">Name</label>
-        <input type="text" id="name" name="name" value="${(register.formData.name!'')}" required>
-        <#if messagesPerField.existsError('name')>
-          <div class="error-message">${kcSanitize(messagesPerField.get('name'))?no_esc}</div>
-        </#if>
-      </div>
-      <!-- Hidden fields for firstName and lastName -->
-      <input type="hidden" id="firstName" name="firstName" value="${(register.formData.firstName!'')}">
-      <input type="hidden" id="lastName" name="lastName" value="${(register.formData.lastName!'')}">
-      <div class="form-group">
-        <label for="email">${msg("email")}</label>
-        <input type="email" id="email" name="email" value="${(register.formData.email!'')}" required>
-        <#if messagesPerField.existsError('email')>
-          <div class="error-message">${kcSanitize(messagesPerField.get('email'))?no_esc}</div>
-        </#if>
-      </div>
-      <div class="form-group">
-        <label for="username">${msg("username")}</label>
-        <input type="text" id="username" name="username" value="${(register.formData.username!'')}" required>
-        <#if messagesPerField.existsError('username')>
-          <div class="error-message">${kcSanitize(messagesPerField.get('username'))?no_esc}</div>
-        </#if>
-      </div>
-      <div class="form-group">
-        <label for="password">${msg("password")}</label>
-        <input type="password" id="password" name="password" required>
-        <#if messagesPerField.existsError('password')>
-          <div class="error-message">${kcSanitize(messagesPerField.get('password'))?no_esc}</div>
-        </#if>
-      </div>
-      <div class="form-group">
-        <label for="password-confirm">${msg("passwordConfirm")}</label>
-        <input type="password" id="password-confirm" name="password-confirm" required>
-        <#if messagesPerField.existsError('password-confirm')>
-          <div class="error-message">${kcSanitize(messagesPerField.get('password-confirm'))?no_esc}</div>
-        </#if>
-      </div>
-      <div class="form-actions">
-        <a href="${url.loginUrl}">${msg("backToLogin")}</a>
-        <button type="submit" class="submit-btn">${msg("doRegister")}</button>
-      </div>
-    </form>
-  </div>
-
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const form = document.getElementById("kc-register-form");
-      const submitBtn = form.querySelector(".submit-btn");
-      const nameInput = document.getElementById("name");
-      const firstNameInput = document.getElementById("firstName");
-      const lastNameInput = document.getElementById("lastName");
-
-      form.addEventListener("submit", function (e) {
-        // Split the full name into first and last name
-        const nameParts = nameInput.value.trim().split(/\s+/);
-        if (nameParts.length >= 2) {
-          firstNameInput.value = nameParts[0];
-          lastNameInput.value = nameParts.slice(1).join(" ");
-        } else {
-          // If only one word is entered, use it as firstName and set lastName as empty
-          firstNameInput.value = nameParts[0];
-          lastNameInput.value = "";
-        }
+    <div class="register-container">
+        <div class="logo">
+            <img src="${url.resourcesPath}/img/logo.png" alt="Logo" />
+        </div>
+        <h1>Register</h1>
         
-        submitBtn.classList.add("loading");
-      });
-    });
-  </script>
+        <#if message?has_content && message.type = 'error'>
+            <div class="alert alert-error">
+                ${message.summary}
+            </div>
+        </#if>
+
+        <form id="kc-register-form" action="${url.registrationAction}" method="post" onsubmit="return copyEmailToUsername()">
+            <input type="hidden" id="username" name="username" />
+            
+            <div class="form-group">
+                <label for="firstName">${msg("firstName")}</label>
+                <input type="text" id="firstName" name="firstName" value="${(register.formData.firstName!'')}" 
+                    placeholder="Enter your name" required autofocus />
+            </div>
+
+            <div class="form-group">
+                <label for="email">${msg("email")}</label>
+                <input type="email" id="email" name="email" value="${(register.formData.email!'')}" 
+                    placeholder="Enter your email" required />
+            </div>
+
+            <div class="form-group">
+                <label for="password">${msg("password")}</label>
+                <input type="password" id="password" name="password" 
+                    value="${(register.formData.password!'')}"
+                    placeholder="Create password" required />
+            </div>
+
+            <div class="form-group">
+                <label for="password-confirm">${msg("passwordConfirm")}</label>
+                <input type="password" id="password-confirm" name="password-confirm" 
+                    value="${(register.formData.password-confirm!'')}"
+                    placeholder="Confirm password" required />
+            </div>
+
+            <input class="register-button" type="submit" value="${msg("doRegister")}"/>
+        </form>
+
+        <div class="login-link">
+            <a href="${url.loginUrl}">${msg("backToLogin")}</a>
+        </div>
+    </div>
 </body>
 </html>

@@ -20,7 +20,6 @@
     *, *::before, *::after { box-sizing:border-box; margin:0; padding:0 }
     html, body { height:100% }
     body {
-      background:url('${url.resourcesPath}/img/login_bg.png') center/contain no-repeat;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       display:flex; align-items:center; justify-content:center;
     }
@@ -69,7 +68,7 @@
       outline:none;
     }
 
-    /* ——— Black “Log In” button ——— */
+    /* ——— Black "Log In" button ——— */
     button.primary {
       height: var(--field-h);
       width:100%;
@@ -111,6 +110,7 @@
 .btn-social {
       display: flex;
       align-items: center;
+      justify-content: center;
       width: 100%;
       padding: 0.5rem;
       margin-bottom: 0.75rem;
@@ -198,10 +198,11 @@
 
     <form action="${url.loginAction}" method="post" onsubmit="return disableLogin()">
       <input id="username" name="username" type="text"
-             placeholder="Username or Email" value="${username!''}"
+             placeholder="Username or Email" value="${(login.username!'')}"
              autocomplete="username" required autofocus />
       <input id="password" name="password" type="password"
-             placeholder="Password" autocomplete="current-password" required />
+             placeholder="Password" value="${(login.password!'')}"
+             autocomplete="current-password" required />
       <button id="kc-login" class="primary" type="submit">Sign In</button>
     </form>
     <div class="links">

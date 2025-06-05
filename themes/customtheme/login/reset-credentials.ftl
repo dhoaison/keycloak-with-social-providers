@@ -8,7 +8,6 @@
   <title>${msg("resetPasswordTitle")}</title>
    <style>
         body { 
-         background:url('${url.resourcesPath}/img/login_bg.png') center/contain no-repeat;
         font-family: Arial, sans-serif; background: #f8f8f9; }
         .kc-content-wrapper { max-width: 400px; margin: 80px auto; background: #fff; padding: 2em; border-radius: 8px; box-shadow: 0 0 10px #ccc;}
         label { margin-bottom: 4px; }

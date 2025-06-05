@@ -61,7 +61,7 @@
         <p class="message">
             We've already sent a verification email to your address.<br>
             Please check your inbox (and spam folder) to complete your verification.<br>
-            You can resend the email in <span id="countdown">30</span> seconds.
+            <span id="resend-text">You can resend the email in <span id="countdown">30</span> seconds.</span>
         </p>
         <form action="${url.loginAction}" method="post">
             <button id="resend-btn" name="resend" value="true" disabled>Resend Email</button>
@@ -71,6 +71,7 @@
     <script>
         let seconds = 30;
         const countdownEl = document.getElementById('countdown');
+        const resendTextEl = document.getElementById('resend-text');
         const button = document.getElementById('resend-btn');
 
         const timer = setInterval(() => {
@@ -80,7 +81,7 @@
             if (seconds <= 0) {
                 clearInterval(timer);
                 button.disabled = false;
-                countdownEl.parentNode.removeChild(countdownEl); // Optional: remove countdown once it's done
+                resendTextEl.textContent = "You can resend the email now";
             }
         }, 1000);
     </script>
