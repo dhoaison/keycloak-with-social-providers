@@ -24,14 +24,7 @@
             max-width: 400px;
             box-sizing: border-box;
         }
-        .logo {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-        .logo img {
-            max-width: 150px;
-            height: auto;
-        }
+    
         h1 {
             text-align: center;
             font-size: 2rem;
@@ -95,13 +88,30 @@
             font-size: 0.875rem;
             margin-top: 0.5rem;
         }
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1e1e1e;
+            color: white;
+            padding: 16px 24px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        .toast.show {
+            opacity: 1;
+            visibility: visible;
+        }
     </style>
 </head>
 <body>
     <div class="reset-container">
-        <div class="logo">
-            <img src="${url.resourcesPath}/img/logo.png" alt="Logo" />
-        </div>
+   
         <h1>Reset Password</h1>
         
         <form id="kc-reset-password-form" action="${url.loginAction}" method="post">
@@ -122,10 +132,13 @@
         </div>
     </div>
 
+    <div id="toast" class="toast">Password reset link has been sent to your email</div>
+
     <script>
         const form = document.getElementById('kc-reset-password-form');
         const usernameInput = document.getElementById('username');
         const errorDiv = document.getElementById('error-message');
+        const toast = document.getElementById('toast');
 
         form.addEventListener('submit', function (e) {
             const email = usernameInput.value.trim();
@@ -146,6 +159,16 @@
             }
 
             errorDiv.style.display = "none";
+            
+            // Show success toast
+            e.preventDefault();
+            toast.classList.add('show');
+            
+            // Hide toast after 3 seconds and submit form
+            setTimeout(() => {
+                toast.classList.remove('show');
+                form.submit();
+            }, 3000);
         });
     </script>
 </body>
