@@ -24,14 +24,7 @@
             max-width: 400px;
             box-sizing: border-box;
         }
-        .logo {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-        .logo img {
-            max-width: 150px;
-            height: auto;
-        }
+        .logo { width:48px; margin-bottom:1.5rem; opacity:.85; }
         h1 {
             text-align: center;
             font-size: 2rem;
@@ -113,9 +106,7 @@
 </head>
 <body>
     <div class="register-container">
-        <div class="logo">
-            <img src="${url.resourcesPath}/img/logo.png" alt="Logo" />
-        </div>
+        <img src="${url.resourcesPath}/img/logo.png" alt="Logo" class="logo"/>
         <h1>Register</h1>
         
         <#if message?has_content && message.type = 'error'>
@@ -128,10 +119,15 @@
             <input type="hidden" id="username" name="username" />
             
             <div class="form-group">
-                <label for="firstName">${msg("firstName")}</label>
-                <input type="text" id="firstName" name="firstName" value="${(register.formData.firstName!'')}" 
-                    placeholder="Enter your name" required autofocus />
+                <label for="fullName">Full name</label>
+                <input type="text" id="fullName" name="fullName" 
+                    value="${((register.formData.firstName)!'')} ${((register.formData.lastName)!'')}"
+                    placeholder="Enter your full name" required autofocus />
             </div>
+            
+            <!-- Hidden fields for firstName and lastName -->
+            <input type="hidden" id="firstName" name="firstName" />
+            <input type="hidden" id="lastName" name="lastName" />
 
             <div class="form-group">
                 <label for="email">${msg("email")}</label>
@@ -159,5 +155,33 @@
             <a href="${url.loginUrl}">${msg("backToLogin")}</a>
         </div>
     </div>
+
+    <script>
+        const form = document.getElementById('kc-register-form');
+        const fullNameInput = document.getElementById('fullName');
+        const firstNameInput = document.getElementById('firstName');
+        const lastNameInput = document.getElementById('lastName');
+        const emailInput = document.getElementById('email');
+        const usernameInput = document.getElementById('username');
+
+        function copyEmailToUsername() {
+            usernameInput.value = emailInput.value;
+            
+            // Split full name into first and last name
+            const fullName = fullNameInput.value.trim();
+            const nameParts = fullName.split(/\s+/);
+            
+            if (nameParts.length < 2) {
+                alert('Please enter both your first and last name');
+                return false;
+            }
+            
+            // First word is firstName, rest is lastName
+            firstNameInput.value = nameParts[0];
+            lastNameInput.value = nameParts.slice(1).join(' ');
+            
+            return true;
+        }
+    </script>
 </body>
 </html>
