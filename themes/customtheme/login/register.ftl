@@ -149,7 +149,6 @@
             <div class="form-group">
                 <label for="password-confirm">${msg("passwordConfirm")}</label>
                 <input type="password" id="password-confirm" name="password-confirm" 
-                    value="${(register.formData.password-confirm!'')}"
                     placeholder="Confirm password" required />
             </div>
 
