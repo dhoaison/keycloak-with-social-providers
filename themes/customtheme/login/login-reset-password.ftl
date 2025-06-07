@@ -23,6 +23,8 @@
             width: 100%;
             max-width: 400px;
             box-sizing: border-box;
+            border: 1px solid #DFE3E8;
+            text-align: center;
         }
     
         h1 {
@@ -33,50 +35,93 @@
             color: #1a1a1a;
         }
         .form-group {
+            position: relative;
             margin-bottom: 1.25rem;
-        }
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: #666;
-            font-size: 0.9rem;
+            display: flex;
         }
         input[type="text"],
         input[type="email"] {
             width: 100%;
-            padding: 0.75rem;
+            padding: 1rem 0.75rem;
             border: 1px solid #e1e1e1;
             border-radius: 8px;
             font-size: 1rem;
-            box-sizing: border-box;
-            transition: border-color 0.2s;
+            transition: all 0.2s ease;
+            background: transparent;
+        }
+        .form-label {
+            position: absolute;
+            left: 0.75rem;
+            top: 1rem;
+            padding: 0 0.25rem;
+            background-color: white;
+            font-size: 1rem;
+            color: #666;
+            transition: all 0.2s ease;
+            pointer-events: none;
+        }
+        input:focus + .form-label,
+        input:not(:placeholder-shown) + .form-label {
+            top: -0.5rem;
+            font-size: 0.75rem;
+            color: #919EAB;
+        }
+        input::placeholder {
+            color: transparent;
+        }
+        input:focus::placeholder {
+            color: #999;
         }
         input:focus {
-            outline: none;
             border-color: #4763E4;
+            outline: none;
         }
-        .reset-button {
+        button.primary {
             width: 100%;
             padding: 0.875rem;
-            background: #4763E4;
+            background: #3366FF;
             color: white;
             border: none;
             border-radius: 8px;
             font-size: 1rem;
             font-weight: 500;
             cursor: pointer;
-            transition: background-color 0.2s;
+            transition: all 0.2s;
             margin-top: 1rem;
+            position: relative;
+        }
+        button.primary:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+        button.primary.loading {
+            color: transparent;
+        }
+        button.primary.loading::after {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            top: 50%;
+            left: 50%;
+            margin: -10px 0 0 -10px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
         .reset-button:hover {
-            background: #3951cc;
+            background: #3366FF;
         }
         .login-link {
             text-align: center;
             margin-top: 1.5rem;
         }
         .login-link a {
-            color: #4763E4;
+            color: #3366FF;
             text-decoration: none;
             font-size: 0.9rem;
         }
@@ -114,17 +159,17 @@
    
         <h1>Reset Password</h1>
         
-        <form id="kc-reset-password-form" action="${url.loginAction}" method="post">
+        <form id="kc-reset-password-form" action="${url.loginAction}" method="post" onsubmit="return handleSubmit(event)">
             <div class="form-group">
-                <label for="username">Email</label>
                 <input type="email" id="username" name="username" 
                     value="${(auth.attemptedUsername!'')}"
                     placeholder="Enter your email"
                     required />
+                <label for="username" class="form-label">Email</label>
                 <div class="error-message" id="error-message" style="display:none;"></div>
             </div>
 
-            <button type="submit" class="reset-button">Send password reset link</button>
+            <button type="submit" id="kc-submit" class="primary">Send password reset link</button>
         </form>
 
         <div class="login-link">
@@ -139,6 +184,13 @@
         const usernameInput = document.getElementById('username');
         const errorDiv = document.getElementById('error-message');
         const toast = document.getElementById('toast');
+
+        function handleSubmit(e) {
+            const btn = document.getElementById('kc-submit');
+            btn.disabled = true;
+            btn.classList.add('loading');
+            return true;
+        }
 
         form.addEventListener('submit', function (e) {
             const email = usernameInput.value.trim();

@@ -23,6 +23,8 @@
             width: 100%;
             max-width: 400px;
             box-sizing: border-box;
+             border: 1px solid #DFE3E8;
+             text-align: center
         }
         .logo { width:48px; margin-bottom:1.5rem; opacity:.85; }
         h1 {
@@ -33,44 +35,90 @@
             color: #1a1a1a;
         }
         .form-group {
+            position: relative;
             margin-bottom: 1.25rem;
+            display: flex;
         }
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
+        .form-label {
+            position: absolute;
+            left: 0.75rem;
+            top: 1rem;
+            padding: 0 0.25rem;
+            background-color: white;
+            font-size: 1rem;
             color: #666;
-            font-size: 0.9rem;
+            transition: all 0.2s ease;
+            pointer-events: none;
+        }
+        input:focus + .form-label,
+        input:not(:placeholder-shown) + .form-label {
+            top: -0.5rem;
+            font-size: 0.75rem;
+            color: #919EAB;
+        }
+        input::placeholder {
+            color: transparent;
+        }
+        input:focus::placeholder {
+            color: #999;
+        }
+        input:focus {
+            border-color: #3366FF;
+            outline: none;
         }
         input[type="text"],
         input[type="email"],
         input[type="password"] {
             width: 100%;
-            padding: 0.75rem;
+            padding: 1rem 0.75rem;
             border: 1px solid #e1e1e1;
             border-radius: 8px;
             font-size: 1rem;
-            box-sizing: border-box;
-            transition: border-color 0.2s;
-        }
-        input[type="text"]:focus,
-        input[type="email"]:focus,
-        input[type="password"]:focus {
-            outline: none;
-            border-color: #4763E4;
+            transition: all 0.2s ease;
+            background: transparent;
         }
         .register-button {
             width: 100%;
             padding: 0.875rem;
-            background: #4763E4;
+            background: #3366FF;
             color: white;
             border: none;
             border-radius: 8px;
             font-size: 1rem;
             font-weight: 500;
             cursor: pointer;
-            transition: background-color 0.2s;
+            transition: all 0.2s;
             margin-top: 1rem;
+            position: relative;
         }
+
+        .register-button:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        .register-button.loading {
+            color: transparent;
+        }
+
+        .register-button.loading::after {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            top: 50%;
+            left: 50%;
+            margin: -10px 0 0 -10px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
         .register-button:hover {
             background: #3951cc;
         }
@@ -79,7 +127,7 @@
             margin-top: 1.5rem;
         }
         .login-link a {
-            color: #4763E4;
+            color: #3366FF;
             text-decoration: none;
             font-size: 0.9rem;
         }
@@ -115,14 +163,14 @@
             </div>
         </#if>
 
-        <form id="kc-register-form" action="${url.registrationAction}" method="post" onsubmit="return copyEmailToUsername()">
+        <form id="kc-register-form" action="${url.registrationAction}" method="post" onsubmit="return handleSubmit(event)">
             <input type="hidden" id="username" name="username" />
             
             <div class="form-group">
-                <label for="fullName">Full name</label>
                 <input type="text" id="fullName" name="fullName" 
                     value="${((register.formData.firstName)!'')} ${((register.formData.lastName)!'')}"
                     placeholder="Enter your full name" required autofocus />
+                <label for="fullName" class="form-label">Full name</label>
             </div>
             
             <!-- Hidden fields for firstName and lastName -->
@@ -130,25 +178,26 @@
             <input type="hidden" id="lastName" name="lastName" />
 
             <div class="form-group">
-                <label for="email">${msg("email")}</label>
-                <input type="email" id="email" name="email" value="${(register.formData.email!'')}" 
+                <input type="email" id="email" name="email" 
+                    value="${(register.formData.email!'')}" 
                     placeholder="Enter your email" required />
+                <label for="email" class="form-label">Email</label>
             </div>
 
             <div class="form-group">
-                <label for="password">${msg("password")}</label>
                 <input type="password" id="password" name="password" 
                     value="${(register.formData.password!'')}"
                     placeholder="Create password" required />
+                <label for="password" class="form-label">Password</label>
             </div>
 
             <div class="form-group">
-                <label for="password-confirm">${msg("passwordConfirm")}</label>
                 <input type="password" id="password-confirm" name="password-confirm" 
                     placeholder="Confirm password" required />
+                <label for="password-confirm" class="form-label">Confirm password</label>
             </div>
 
-            <input class="register-button" type="submit" value="${msg("doRegister")}"/>
+            <button type="submit" id="kc-register" class="register-button">${msg("doRegister")}</button>
         </form>
 
         <div class="login-link">
@@ -164,21 +213,18 @@
         const emailInput = document.getElementById('email');
         const usernameInput = document.getElementById('username');
 
-        function copyEmailToUsername() {
-            usernameInput.value = emailInput.value;
-            
+        function handleSubmit(e) {
             // Split full name into first and last name
-            const fullName = fullNameInput.value.trim();
-            const nameParts = fullName.split(/\s+/);
-            
-            if (nameParts.length < 2) {
-                alert('Please enter both your first and last name');
-                return false;
-            }
-            
-            // First word is firstName, rest is lastName
             firstNameInput.value = nameParts[0];
             lastNameInput.value = nameParts.slice(1).join(' ');
+            
+            // Copy email to username
+            usernameInput.value = emailInput.value;
+
+            // Add loading state
+            const btn = document.getElementById('kc-register');
+            btn.disabled = true;
+            btn.classList.add('loading');
             
             return true;
         }

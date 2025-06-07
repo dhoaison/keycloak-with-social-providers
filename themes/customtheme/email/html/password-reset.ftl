@@ -154,7 +154,7 @@
 <body>
   <div class="container">
     <div class="ribbon"></div>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Keycloak_Logo.png" alt="Logo" class="brand-logo" />
+    <img src="${url.resourcesPath}/img/logo.png" alt="Logo" class="logo"/>
     
     <h2>Reset Your Password</h2>
     <div class="greeting">

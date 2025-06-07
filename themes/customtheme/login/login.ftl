@@ -30,6 +30,7 @@
       box-shadow: 0 20px 50px rgba(0,0,0,0.08);
       width:100%; max-width:360px;
       padding:2rem; text-align:center;
+      border: 1px solid #DFE3E8;
     }
     .logo { width:48px; margin-bottom:1.5rem; opacity:.85; }
     h1 {
@@ -39,6 +40,7 @@
     .feedback {
           display: flex;
     align-items: center;
+    justify-content: center;
     color: #FF3B30;
     font-size: .875rem;
     text-align: left;
@@ -49,10 +51,9 @@
     }
 
     form {
-      display:grid; gap:1rem;
+      display:grid; 
     }
     input {
-      height: var(--field-h);
       padding: 0 12px;
       font-size:1rem;
       border:1px solid var(--border);
@@ -61,11 +62,45 @@
       color:var(--text);
       transition:border-color var(--ease), box-shadow var(--ease);
     }
-    input::placeholder { color:var(--subtext) }
-    input:focus {
-      border-color:var(--text);
-      box-shadow:0 0 0 3px rgba(0,0,0,0.1);
-      outline:none;
+    .form-group {
+      position: relative;
+      margin-bottom: 1rem;
+    }
+    .form-control {
+      width: 100%;
+      padding: 1rem 0.75rem;
+      border: 1px solid #e1e1e1;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: all 0.2s ease;
+      background: transparent;
+    }
+    .form-control:focus {
+      border-color: #4763E4;
+      outline: none;
+    }
+    .form-label {
+      position: absolute;
+      left: 0.75rem;
+      top: 1rem;
+      padding: 0 0.25rem;
+      background-color: white;
+      font-size: 1rem;
+      color: #666;
+      transition: all 0.2s ease;
+      pointer-events: none;
+    }
+    .form-control:focus + .form-label,
+    .form-control:not(:placeholder-shown) + .form-label {
+      top: -0.5rem;
+      font-size: 0.75rem;
+      color: #919EAB;
+    }
+    .form-control::placeholder {
+      color: transparent;
+    }
+    .form-control:focus::placeholder {
+      color: #999;
     }
 
     /* ——— Black "Log In" button ——— */
@@ -79,16 +114,36 @@
       border:none;
       border-radius:var(--radius);
       cursor:pointer;
-      transition: background var(--ease), transform .1s ease-in-out, box-shadow var(--ease);
+      transition: all 0.2s;
       box-shadow:0 4px 12px rgba(0,0,0,0.12);
+      position: relative;
     }
-    button.primary:hover {
-      background: var(--button-hover);
-      transform: translateY(-1px);
-      box-shadow:0 6px 16px rgba(0,0,0,0.18);
+
+    button.primary:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
     }
-    button.primary:active {
-      transform: translateY(0);
+
+    button.primary.loading {
+      color: transparent;
+    }
+
+    button.primary.loading::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      top: 50%;
+      left: 50%;
+      margin: -10px 0 0 -10px;
+      border: 3px solid rgba(255,255,255,0.3);
+      border-radius: 50%;
+      border-top-color: #fff;
+      animation: spin 1s ease-in-out infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
     }
 
     .divider {
@@ -153,10 +208,9 @@
     }
  
 .sign-up-btn {
-	font-weight: 600;
     margin-left: 2px;
-    color: #000;
         text-decoration: auto;
+        color: #3366FF
 }
 .forgot-btn {
     color: #3366FF;
@@ -164,17 +218,16 @@
         font-size: 16px;
         min-width: 900px
 }
-    .links {
-      margin-top:1rem; display:flex; justify-content:space-between;
-      font-size:.875rem; color:var(--text);
-    }
   
     .links {
   margin-top: 1.5rem;
   display: flex;
   justify-content: space-between;
+  gap: 8px;
   font-size: 0.875rem;
   color: var(--text);
+      flex-direction: column;
+
   }
   .no-account {
     color: #637381
@@ -189,6 +242,13 @@
       if (btn) btn.disabled = true;
       return true;
     }
+
+    function handleSubmit(e) {
+      const btn = document.getElementById('kc-login');
+      btn.disabled = true;
+      btn.classList.add('loading');
+      return true;
+    }
   </script>
 </head>
 <body>
@@ -196,13 +256,21 @@
     <img src="${url.resourcesPath}/img/logo.png" alt="Logo" class="logo"/>
     <h1>Sign in to Gnosis TMS</h1>
 
-    <form action="${url.loginAction}" method="post" onsubmit="return disableLogin()">
-      <input id="username" name="username" type="text"
-             placeholder="Username or Email" value="${(login.username!'')}"
-             autocomplete="username" required autofocus />
-      <input id="password" name="password" type="password"
-             placeholder="Password" value="${(login.password!'')}"
-             autocomplete="current-password" required />
+    <form action="${url.loginAction}" method="post" onsubmit="return handleSubmit(event)">
+      <div class="form-group">
+        <input type="text" id="username" name="username" class="form-control"
+               value="${(login.username!'')}"
+               placeholder="Email"
+               autocomplete="username" required autofocus />
+        <label for="username" class="form-label">Email</label>
+      </div>
+      <div class="form-group">
+        <input type="password" id="password" name="password" class="form-control"
+               value="${(login.password!'')}"
+               placeholder="Password"
+               autocomplete="current-password" required />
+        <label for="password" class="form-label">Password</label>
+      </div>
       <button id="kc-login" class="primary" type="submit">Sign In</button>
     </form>
     <div class="links">
