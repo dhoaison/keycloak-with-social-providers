@@ -153,8 +153,8 @@
 </head>
 <body>
   <div class="container">
+ <a href="https://ibb.co/rf4PWwbZ"><img src="https://i.ibb.co/rf4PWwbZ/caduceus2-copy.png" alt="caduceus2-copy" border="0" class="logo"/></a>
     <div class="ribbon"></div>
-    <img src="${url.resourcesPath}/img/logo.png" alt="Logo" class="logo"/>
     
     <h2>Reset Your Password</h2>
     <div class="greeting">

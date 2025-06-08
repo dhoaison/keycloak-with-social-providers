@@ -138,9 +138,11 @@
             padding: 1rem;
             border-radius: 8px;
             margin-bottom: 1.5rem;
-            background: #fff3cd;
-            color: #856404;
-            border: 1px solid #ffeeba;
+            background: #FFF4F4;
+            color: #FF3B30;
+            border: 1px solid #FFE5E5;
+            text-align: left;
+            font-size: 0.875rem;
         }
     </style>
     <script>
@@ -159,7 +161,7 @@
         
         <#if message?has_content && message.type = 'error'>
             <div class="alert alert-error">
-                ${message.summary}
+                ${message.summary?no_esc}
             </div>
         </#if>
 
@@ -215,8 +217,11 @@
 
         function handleSubmit(e) {
             // Split full name into first and last name
-            firstNameInput.value = nameParts[0];
-            lastNameInput.value = nameParts.slice(1).join(' ');
+            const fullName = fullNameInput.value.trim();
+            const nameParts = fullName.split(/\s+/);
+            
+            firstNameInput.value = nameParts[0] || '';
+            lastNameInput.value = nameParts.slice(1).join(' ') || '';
             
             // Copy email to username
             usernameInput.value = emailInput.value;
