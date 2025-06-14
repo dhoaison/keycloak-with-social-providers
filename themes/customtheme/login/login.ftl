@@ -169,43 +169,24 @@
       width: 100%;
       padding: 0.5rem;
       margin-bottom: 0.75rem;
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: #555;
+      font-size: 14px;
+      font-weight: 700;
+      color: #212B36;
       background: #fff;
       border: 1px solid #ddd;
       border-radius: 6px;
       cursor: pointer;
       transition: background 0.3s, border-color 0.3s;
+      font-family: 'Public Sans';
     }
     .btn-social-icon {
       width: 20px;
       height: 20px;
       margin-right: 0.75rem;
     }
-       .btn-social.facebook {
-  background: #fff;
-  color: #212B36;
-}
-.btn-social.facebook:hover {
-  background: #d6d4d4;
-}
-
-.btn-social.google {
-  background: #fff;
-  color: ##212B36;
-}
-.btn-social.google:hover {
-  background: #d6d4d4;
-}
-
-     .btn-social.apple {
-    background: #fff;
-  color: #212B36;
+     .btn-social:hover {
+        background: #d6d4d4;
      }
-    .btn-social.apple:hover {
-      background: #d6d4d4
-    }
  
 .sign-up-btn {
     margin-left: 2px;

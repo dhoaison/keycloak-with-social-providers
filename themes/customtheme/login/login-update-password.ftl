@@ -144,16 +144,33 @@
             text-align: left;
             margin-bottom: 1rem;
         }
+
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1e1e1e;
+            color: white;
+            padding: 16px 24px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 1000;
+        }
+        .toast.show {
+            opacity: 1;
+            visibility: visible;
+        }
     </style>
 </head>
 <body>
     <div class="card">
         <img src="${url.resourcesPath}/img/logo.png" alt="Logo" class="logo"/>
         <h1>${msg("updatePasswordTitle")}</h1>
-
-        <#if message?has_content && (message.summary?has_content)>
-            <div class="error">${message.summary}</div>
-        </#if>
 
         <form id="kc-passwd-update-form" action="${url.loginAction}" method="post" onsubmit="return handleSubmit(event)">
             <div class="form-group">
@@ -176,9 +193,26 @@
         </form>
     </div>
 
+    <div id="toast" class="toast"></div>
+
     <script>
         function handleSubmit(e) {
             const btn = document.getElementById('submit-btn');
+            const newPassword = document.getElementById('password-new').value;
+            const confirmPassword = document.getElementById('password-confirm').value;
+            const toast = document.getElementById('toast');
+
+            if (newPassword !== confirmPassword) {
+                e.preventDefault();
+                toast.textContent = 'Passwords do not match';
+                toast.classList.add('show');
+                
+                // Hide toast after 3 seconds
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 3000);
+                return false;
+            }
 
             btn.disabled = true;
             btn.classList.add('loading');
