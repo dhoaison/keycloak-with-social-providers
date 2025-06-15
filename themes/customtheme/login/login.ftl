@@ -215,7 +215,11 @@
     }
 
 
-    .links a:hover { color: var(--button-hover) }
+    a {
+     text-decoration: none
+     }
+    
+    
   </style>
   <script>
     function disableLogin() {

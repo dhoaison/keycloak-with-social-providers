@@ -125,9 +125,6 @@
             text-decoration: none;
             font-size: 0.9rem;
         }
-        .login-link a:hover {
-            text-decoration: underline;
-        }
         .error-message {
             color: #FF3B30;
             font-size: 0.875rem;

@@ -131,9 +131,6 @@
             text-decoration: none;
             font-size: 0.9rem;
         }
-        .login-link a:hover {
-            text-decoration: underline;
-        }
         .alert {
             padding: 1rem;
             border-radius: 8px;
