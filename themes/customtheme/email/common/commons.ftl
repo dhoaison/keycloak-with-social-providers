@@ -15,8 +15,11 @@
 <html lang="${locale.language}">
 <head>
   <meta charset="UTF-8"/>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
   <style>
-    body   { margin:0; padding:0; background:#f4f4f4; font-family:Arial,sans-serif }
+    body   { margin:0; padding:0; background:#f4f4f4; font-family:'Public Sans'; }
     .box   { max-width:600px; margin:30px auto; background:#fff; border-radius:6px; overflow:hidden }
     .hdr   { background:#0052CC; color:#fff; padding:20px; text-align:center }
     .bd    { padding:30px; color:#333; line-height:1.5 }

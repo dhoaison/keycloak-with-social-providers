@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <title>${msg("emailForgotTitle")}</title>
     <style>
         body { 
@@ -12,8 +15,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             background: #f5f6fa;
+            font-family: 'Public Sans'
         }
         .reset-container {
             background: white;
@@ -27,12 +30,11 @@
             text-align: center;
         }
     
-        h1 {
-            text-align: center;
-            font-size: 2rem;
-            font-weight: 600;
-            margin: 0 0 2rem;
-            color: #1a1a1a;
+        h3 {
+            font-weight: 700;
+font-size: 32px;
+line-height: 48px;
+letter-spacing: 0px;
         }
         .form-group {
             position: relative;
@@ -89,6 +91,7 @@
             transition: all 0.2s;
             margin-top: 1rem;
             position: relative;
+              font-family: 'Public Sans'
         }
         button.primary:disabled {
             opacity: 0.7;
@@ -154,13 +157,13 @@
 <body>
     <div class="reset-container">
    
-        <h1>Reset Password</h1>
+        <h3>Reset Password</h3>
         
         <form id="kc-reset-password-form" action="${url.loginAction}" method="post" onsubmit="return handleSubmit(event)">
             <div class="form-group">
                 <input type="email" id="username" name="username" 
                     value="${(auth.attemptedUsername!'')}"
-                    placeholder="Enter your email"
+                    placeholder=""
                     required />
                 <label for="username" class="form-label">Email</label>
                 <div class="error-message" id="error-message" style="display:none;"></div>

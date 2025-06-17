@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <title>${realm.displayName!realm.name} – Log In</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
   <style>
     /* Apple-style base */
     :root {
@@ -10,7 +13,7 @@
       --card: #FFFFFF;
       --border: #D1D1D6;
       --text: #1C1C1E;
-      --subtext: #3A3A3C;
+      --subtext: #637381;
       --button-bg: #000000;
       --button-hover: #222222;
       --radius: 10px;
@@ -20,8 +23,16 @@
     *, *::before, *::after { box-sizing:border-box; margin:0; padding:0 }
     html, body { height:100% }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-family: 'Public Sans';
       display:flex; align-items:center; justify-content:center;
+    }
+    
+    .login-title {
+font-weight: 700;
+font-size: 32px;
+line-height: 48px;
+letter-spacing: 0px;
+
     }
 
     .card {
@@ -33,10 +44,7 @@
       border: 1px solid #DFE3E8;
     }
     .logo { width:48px; margin-bottom:1.5rem; opacity:.85; }
-    h1 {
-      font-size:1.5rem; font-weight:600; color:var(--text);
-      margin-bottom:1.5rem;
-    }
+
     .feedback {
           display: flex;
     align-items: center;
@@ -117,6 +125,7 @@
       transition: all 0.2s;
       box-shadow:0 4px 12px rgba(0,0,0,0.12);
       position: relative;
+      font-family: 'Public Sans'
     }
 
     button.primary:disabled {
@@ -177,7 +186,7 @@
       border-radius: 6px;
       cursor: pointer;
       transition: background 0.3s, border-color 0.3s;
-      font-family: 'Public Sans';
+      font-family: 'Public Sans'
     }
     .btn-social-icon {
       width: 20px;
@@ -239,24 +248,24 @@
 <body>
   <div class="card">
     <img src="${url.resourcesPath}/img/logo.png" alt="Logo" class="logo"/>
-    <h1>Sign in to Gnosis TMS</h1>
+    <h3 class="login-title">Sign in to Gnosis TMS</h3>
 
     <form action="${url.loginAction}" method="post" onsubmit="return handleSubmit(event)">
       <div class="form-group">
         <input type="text" id="username" name="username" class="form-control"
                value="${(login.username!'')}"
-               placeholder="Email"
+               placeholder=""
                autocomplete="username" required autofocus />
         <label for="username" class="form-label">Email</label>
       </div>
       <div class="form-group">
         <input type="password" id="password" name="password" class="form-control"
                value="${(login.password!'')}"
-               placeholder="Password"
+               placeholder=""
                autocomplete="current-password" required />
         <label for="password" class="form-label">Password</label>
       </div>
-      <button id="kc-login" class="primary" type="submit">Sign In</button>
+      <button id="kc-login" class="primary" type="submit">Continue</button>
     </form>
     <div class="links">
     <div >

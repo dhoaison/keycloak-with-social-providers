@@ -2,6 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <title>${msg("updatePasswordTitle")}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <style>
@@ -12,8 +15,12 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Public Sans';
             background: #f5f6fa;
+        }
+
+        button {
+            font-family: 'Public Sans'
         }
 
         .card {
@@ -33,13 +40,14 @@
             opacity: .85;
         }
 
-        h1 {
-            text-align: center;
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: #1a1a1a;
-            margin-bottom: 1.5rem;
-        }
+           
+    .update-title {
+font-weight: 700;
+font-size: 32px;
+line-height: 48px;
+letter-spacing: 0px;
+
+    }
 
         .form-group {
             position: relative;
@@ -170,13 +178,13 @@
 <body>
     <div class="card">
         <img src="${url.resourcesPath}/img/logo.png" alt="Logo" class="logo"/>
-        <h1>${msg("updatePasswordTitle")}</h1>
+        <h3 class="update-title">${msg("updatePasswordTitle")}</h3>
 
         <form id="kc-passwd-update-form" action="${url.loginAction}" method="post" onsubmit="return handleSubmit(event)">
             <div class="form-group">
                 <input type="password" id="password-new" name="password-new" 
                     class="form-control"
-                    placeholder="Enter new password"
+                    placeholder=""
                     autofocus required />
                 <label for="password-new" class="form-label">${msg("passwordNew")}</label>
             </div>
@@ -184,7 +192,7 @@
             <div class="form-group">
                 <input type="password" id="password-confirm" name="password-confirm" 
                     class="form-control"
-                    placeholder="Confirm new password"
+                    placeholder=""
                     required />
                 <label for="password-confirm" class="form-label">${msg("passwordConfirm")}</label>
             </div>

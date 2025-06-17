@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <title>${msg("registerTitle")}</title>
     <style>
         body { 
@@ -12,7 +15,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-family: 'Public Sans'
             background: #f5f6fa;
         }
         .register-container {
@@ -27,12 +30,12 @@
              text-align: center
         }
         .logo { width:48px; margin-bottom:1.5rem; opacity:.85; }
-        h1 {
-            text-align: center;
-            font-size: 2rem;
-            font-weight: 600;
-            margin: 0 0 2rem;
-            color: #1a1a1a;
+        .register-title {
+font-weight: 700;
+font-size: 32px;
+line-height: 48px;
+letter-spacing: 0px;
+
         }
         .form-group {
             position: relative;
@@ -90,6 +93,7 @@
             transition: all 0.2s;
             margin-top: 1rem;
             position: relative;
+            font-family: 'Public Sans'
         }
 
         .register-button:disabled {
@@ -130,6 +134,7 @@
             color: #3366FF;
             text-decoration: none;
             font-size: 0.9rem;
+            font-family: 'Public Sans'
         }
         .alert {
             padding: 1rem;
@@ -140,6 +145,7 @@
             border: 1px solid #FFE5E5;
             text-align: left;
             font-size: 0.875rem;
+            font-family: 'Public Sans'
         }
     </style>
     <script>
@@ -154,7 +160,7 @@
 <body>
     <div class="register-container">
         <img src="${url.resourcesPath}/img/logo.png" alt="Logo" class="logo"/>
-        <h1>Register</h1>
+        <h3 class="register-title">Register</h3>
         
         <#if message?has_content && message.type = 'error'>
             <div class="alert alert-error">
@@ -168,7 +174,7 @@
             <div class="form-group">
                 <input type="text" id="fullName" name="fullName" 
                     value="${((register.formData.firstName)!'')} ${((register.formData.lastName)!'')}"
-                    placeholder="Enter your full name" required autofocus />
+                    placeholder="" required autofocus />
                 <label for="fullName" class="form-label">Full name</label>
             </div>
             
@@ -179,20 +185,20 @@
             <div class="form-group">
                 <input type="email" id="email" name="email" 
                     value="${(register.formData.email!'')}" 
-                    placeholder="Enter your email" required />
+                     placeholder="" required />
                 <label for="email" class="form-label">Email</label>
             </div>
 
             <div class="form-group">
                 <input type="password" id="password" name="password" 
                     value="${(register.formData.password!'')}"
-                    placeholder="Create password" required />
+                     placeholder="" required />
                 <label for="password" class="form-label">Password</label>
             </div>
 
             <div class="form-group">
                 <input type="password" id="password-confirm" name="password-confirm" 
-                    placeholder="Confirm password" required />
+                    placeholder="" required />
                 <label for="password-confirm" class="form-label">Confirm password</label>
             </div>
 
