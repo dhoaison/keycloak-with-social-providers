@@ -32,14 +32,14 @@ font-weight: 700;
 font-size: 32px;
 line-height: 48px;
 letter-spacing: 0px;
-
+margin-bottom: 16px
     }
 
     .card {
       background: var(--card);
       border-radius: 16px;
       box-shadow: 0 20px 50px rgba(0,0,0,0.08);
-      width:100%; max-width:360px;
+      width:100%; max-width:433px;
       padding:2rem; text-align:center;
       border: 1px solid #DFE3E8;
     }

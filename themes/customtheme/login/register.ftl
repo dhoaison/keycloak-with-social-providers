@@ -35,7 +35,9 @@ font-weight: 700;
 font-size: 32px;
 line-height: 48px;
 letter-spacing: 0px;
-
+ font-family: 'Public Sans';
+ margin: 0;
+ margin-bottom: 16px;
         }
         .form-group {
             position: relative;
