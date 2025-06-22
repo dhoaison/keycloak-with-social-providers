@@ -6,6 +6,7 @@
   
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="${url.resourcesPath}/css/styles.css" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
   <style>
     /* Apple-style base */
@@ -252,7 +253,6 @@ margin-bottom: 16px
     <img src="${url.resourcesPath}/img/logo.png" alt="Logo" class="logo"/>
 
     <h3 class="login-title">Sign in to Gnosis TMS</h3>
-  <h3>Test</h3>
     <form action="${url.loginAction}" method="post" onsubmit="return handleSubmit(event)">
       <div class="form-group">
         <input type="text" id="username" name="username" class="form-control"
