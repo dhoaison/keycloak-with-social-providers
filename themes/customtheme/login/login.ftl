@@ -20,6 +20,7 @@
       --radius: 10px;
       --field-h: 44px;
       --ease: 0.2s ease-in-out;
+      --test: 1px
     }
     *, *::before, *::after { box-sizing:border-box; margin:0; padding:0 }
     html, body { height:100% }
