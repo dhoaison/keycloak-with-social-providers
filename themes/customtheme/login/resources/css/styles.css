@@ -51,7 +51,7 @@ input {
   padding: 1rem 0.75rem;
   border: 1px solid #e1e1e1;
   border-radius: 8px;
-  font-size: 14px;
+  font-size: 16px;
   transition: all 0.2s ease;
   background: transparent;
   color: var(--text);
@@ -91,7 +91,7 @@ button {
   background: #fff;
   border: 1px solid #ddd;
   width: 100%;
-  font-size: 1rem;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s;

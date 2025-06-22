@@ -12,6 +12,10 @@
   --ease: 0.2s ease-in-out;
 }
 
+.original {
+  columns: 2;
+}
+
 body {
   font-family: "Public Sans";
   display: flex;
