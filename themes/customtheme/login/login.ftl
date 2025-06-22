@@ -250,8 +250,11 @@ margin-bottom: 16px
 <body>
   <div class="card">
     <img src="${url.resourcesPath}/img/logo.png" alt="Logo" class="logo"/>
+    <#list styles as style>
+    <link href="${url.resourcesPath}/${style}" rel="stylesheet" />
+</#list>
     <h3 class="login-title">Sign in to Gnosis TMS</h3>
-
+  <h3>Test</div>
     <form action="${url.loginAction}" method="post" onsubmit="return handleSubmit(event)">
       <div class="form-group">
         <input type="text" id="username" name="username" class="form-control"
