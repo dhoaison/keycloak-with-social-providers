@@ -51,7 +51,7 @@ input {
   padding: 1rem 0.75rem;
   border: 1px solid #e1e1e1;
   border-radius: 8px;
-  font-size: 1rem;
+  font-size: 14px;
   transition: all 0.2s ease;
   background: transparent;
   color: var(--text);
@@ -98,6 +98,10 @@ button {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
   position: relative;
   font-family: "Public Sans";
+  border-radius: var(--radius);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 button img {
@@ -115,7 +119,6 @@ button.primary {
   background: #3366ff;
   color: #fff;
   border: none;
-  border-radius: var(--radius);
 }
 
 button.primary:disabled {

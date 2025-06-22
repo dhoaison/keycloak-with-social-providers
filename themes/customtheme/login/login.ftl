@@ -31,8 +31,10 @@
     .divider::before { margin-right:.75em }
     .divider::after { margin-left:.75em }
 
-    .social {
-      display:flex; justify-content:center; flex-direction: column
+    .social-wrapper {
+      display:flex; justify-content:center; flex-direction: column;
+      gap: 12px;
+      margin-bottom: 12px
     }
   
     .links {
@@ -100,7 +102,7 @@
 </div>
     <#if social.providers?has_content>
       <div class="divider">or</div>
-      <div class="social">
+      <div class="social-wrapper">
         <#list social.providers as idp>
           <form action="${idp.loginUrl}" method="post">
             <button type="submit" class="btn-social ${idp.alias}"
