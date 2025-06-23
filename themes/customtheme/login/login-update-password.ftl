@@ -8,13 +8,6 @@
      <link rel="stylesheet" href="https://dhoaison.github.io/keycloak-with-social-providers/styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <style>
- 
-
-        .form-group {
-            position: relative;
-            margin-bottom: 1rem;
-            display: flex;
-        }
 
     </style>
 </head>
@@ -24,7 +17,7 @@
         <h3>${msg("updatePasswordTitle")}</h3>
 
         <form id="kc-passwd-update-form" action="${url.loginAction}" method="post" onsubmit="return handleSubmit(event)">
-            <div class="form-group">
+            <div class="input-wrapper">
                 <input type="password" id="password-new" name="password-new" 
                     class="form-control"
                     placeholder=""
@@ -32,7 +25,7 @@
                 <label for="password-new" class="form-label">${msg("passwordNew")}</label>
             </div>
 
-            <div class="form-group">
+            <div class="input-wrapper">
                 <input type="password" id="password-confirm" name="password-confirm" 
                     class="form-control"
                     placeholder=""

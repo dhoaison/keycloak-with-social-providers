@@ -13,11 +13,6 @@
     form {
       display:grid; 
     }
- 
-    .form-group {
-      position: relative;
-      margin-bottom: 1rem;
-    }
 
     .divider {
       display:flex; align-items:center;
@@ -70,14 +65,14 @@
 
     <h3 class="login-title">Sign in to Gnosis TMS</h3>
     <form action="${url.loginAction}" method="post" onsubmit="return handleSubmit(event)">
-      <div class="form-group">
+      <div class="input-wrapper">
         <input type="text" id="username" name="username" class="form-control"
                value="${(login.username!'')}"
                placeholder=""
                autocomplete="username" required autofocus />
         <label for="username" class="form-label">Email</label>
       </div>
-      <div class="form-group">
+      <div class="input-wrapper">
         <input type="password" id="password" name="password" class="form-control"
                value="${(login.password!'')}"
                placeholder=""

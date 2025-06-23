@@ -9,7 +9,12 @@
     <link rel="stylesheet" href="https://dhoaison.github.io/keycloak-with-social-providers/styles.css">
     <title>${msg("registerTitle")}</title>
     <style>
-
+form {
+         display: flex;
+         flex-direction: column;
+         gap: 20px;
+         margin-top: 20px;
+        }
     </style>
     <script>
         function copyEmailToUsername() {
@@ -34,7 +39,7 @@
         <form id="kc-register-form" action="${url.registrationAction}" method="post" onsubmit="return handleSubmit(event)">
             <input type="hidden" id="username" name="username" />
             
-            <div class="form-group">
+            <div class="input-wrapper">
                 <input type="text" id="fullName" name="fullName" 
                     value="${((register.formData.firstName)!'')} ${((register.formData.lastName)!'')}"
                     placeholder="" required autofocus />
@@ -45,21 +50,21 @@
             <input type="hidden" id="firstName" name="firstName" />
             <input type="hidden" id="lastName" name="lastName" />
 
-            <div class="form-group">
+            <div class="input-wrapper">
                 <input type="email" id="email" name="email" 
                     value="${(register.formData.email!'')}" 
                      placeholder="" required />
                 <label for="email" class="form-label">Email</label>
             </div>
 
-            <div class="form-group">
+            <div class="input-wrapper">
                 <input type="password" id="password" name="password" 
                     value="${(register.formData.password!'')}"
                      placeholder="" required />
                 <label for="password" class="form-label">Password</label>
             </div>
 
-            <div class="form-group">
+            <div class="input-wrapper">
                 <input type="password" id="password-confirm" name="password-confirm" 
                     placeholder="" required />
                 <label for="password-confirm" class="form-label">Confirm password</label>

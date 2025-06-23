@@ -9,11 +9,9 @@
     <link rel="stylesheet" href="https://dhoaison.github.io/keycloak-with-social-providers/styles.css">
     <title>${msg("emailForgotTitle")}</title>
     <style>
- 
-        .form-group {
-            position: relative;
-            margin-bottom: 1.25rem;
-            display: flex;
+
+        button {
+          margin-bottom: 16px
         }
  
     </style>
@@ -24,7 +22,7 @@
         <h3>Reset Password</h3>
         
         <form id="kc-reset-password-form" action="${url.loginAction}" method="post" onsubmit="return handleSubmit(event)">
-            <div class="form-group">
+            <div class="input-wrapper">
                 <input type="email" id="username" name="username" 
                     value="${(auth.attemptedUsername!'')}"
                     placeholder=""

@@ -72,6 +72,12 @@ label {
   transition: all 0.2s ease;
   pointer-events: none;
 }
+
+.input-wrapper {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
 input:focus + label,
 input:not(:placeholder-shown) + label {
   top: -0.5rem;
