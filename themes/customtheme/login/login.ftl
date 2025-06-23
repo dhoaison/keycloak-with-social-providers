@@ -29,7 +29,7 @@
     .social-wrapper {
       display:flex; justify-content:center; flex-direction: column;
       gap: 12px;
-      margin-bottom: 12px
+      margin-bottom: 24px
     }
   
     .links {

@@ -15,6 +15,10 @@ form {
          gap: 20px;
          margin-top: 20px;
         }
+
+        button {
+            margin-bottom: 24px
+        }
     </style>
     <script>
         function copyEmailToUsername() {
