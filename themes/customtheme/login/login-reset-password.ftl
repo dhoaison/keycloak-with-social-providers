@@ -4,158 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://dhoaison.github.io/keycloak-with-social-providers/styles.css">
     <title>${msg("emailForgotTitle")}</title>
     <style>
-        body { 
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #f5f6fa;
-            font-family: 'Public Sans'
-        }
-        .reset-container {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 16px;
-            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.05);
-            width: 100%;
-            max-width: 400px;
-            box-sizing: border-box;
-            border: 1px solid #DFE3E8;
-            text-align: center;
-        }
-    
-        h3 {
-            font-weight: 700;
-font-size: 32px;
-line-height: 48px;
-letter-spacing: 0px;
-        }
+ 
         .form-group {
             position: relative;
             margin-bottom: 1.25rem;
             display: flex;
         }
-        input[type="text"],
-        input[type="email"] {
-            width: 100%;
-            padding: 1rem 0.75rem;
-            border: 1px solid #e1e1e1;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: all 0.2s ease;
-            background: transparent;
-        }
-        .form-label {
-            position: absolute;
-            left: 0.75rem;
-            top: 1rem;
-            padding: 0 0.25rem;
-            background-color: white;
-            font-size: 1rem;
-            color: #666;
-            transition: all 0.2s ease;
-            pointer-events: none;
-        }
-        input:focus + .form-label,
-        input:not(:placeholder-shown) + .form-label {
-            top: -0.5rem;
-            font-size: 0.75rem;
-            color: #919EAB;
-        }
-        input::placeholder {
-            color: transparent;
-        }
-        input:focus::placeholder {
-            color: #999;
-        }
-        input:focus {
-            border-color: #4763E4;
-            outline: none;
-        }
-        button.primary {
-            width: 100%;
-            padding: 0.875rem;
-            background: #3366FF;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s;
-            margin-top: 1rem;
-            position: relative;
-              font-family: 'Public Sans'
-        }
-        button.primary:disabled {
-            opacity: 0.7;
-            cursor: not-allowed;
-        }
-        button.primary.loading {
-            color: transparent;
-        }
-        button.primary.loading::after {
-            content: "";
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            top: 50%;
-            left: 50%;
-            margin: -10px 0 0 -10px;
-            border: 3px solid rgba(255,255,255,0.3);
-            border-radius: 50%;
-            border-top-color: #fff;
-            animation: spin 1s ease-in-out infinite;
-        }
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-        .reset-button:hover {
-            background: #3366FF;
-        }
-        .login-link {
-            text-align: center;
-            margin-top: 1.5rem;
-        }
-        .login-link a {
-            color: #3366FF;
-            text-decoration: none;
-            font-size: 0.9rem;
-        }
-        .error-message {
-            color: #FF3B30;
-            font-size: 0.875rem;
-            margin-top: 0.5rem;
-        }
-        .toast {
-            position: fixed;
-            bottom: 24px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #1e1e1e;
-            color: white;
-            padding: 16px 24px;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s, visibility 0.3s;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        }
-        .toast.show {
-            opacity: 1;
-            visibility: visible;
-        }
+ 
     </style>
 </head>
 <body>
-    <div class="reset-container">
+    <div class="card">
    
         <h3>Reset Password</h3>
         
@@ -166,7 +30,7 @@ letter-spacing: 0px;
                     placeholder=""
                     required />
                 <label for="username" class="form-label">Email</label>
-                <div class="error-message" id="error-message" style="display:none;"></div>
+                <div class="error-msg" id="error-message" style="display:none;"></div>
             </div>
 
             <button type="submit" id="kc-submit" class="primary">Send password reset link</button>

@@ -4,151 +4,12 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://dhoaison.github.io/keycloak-with-social-providers/styles.css">
     <title>${msg("registerTitle")}</title>
     <style>
-        body { 
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Public Sans'
-            background: #f5f6fa;
-        }
-        .register-container {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 16px;
-            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.05);
-            width: 100%;
-            max-width: 400px;
-            box-sizing: border-box;
-             border: 1px solid #DFE3E8;
-             text-align: center
-        }
-        .logo { width:48px; margin-bottom:1.5rem; opacity:.85; }
-        .register-title {
-font-weight: 700;
-font-size: 32px;
-line-height: 48px;
-letter-spacing: 0px;
- font-family: 'Public Sans';
- margin: 0;
- margin-bottom: 16px;
-        }
-        .form-group {
-            position: relative;
-            margin-bottom: 1.25rem;
-            display: flex;
-        }
-        .form-label {
-            position: absolute;
-            left: 0.75rem;
-            top: 1rem;
-            padding: 0 0.25rem;
-            background-color: white;
-            font-size: 1rem;
-            color: #666;
-            transition: all 0.2s ease;
-            pointer-events: none;
-        }
-        input:focus + .form-label,
-        input:not(:placeholder-shown) + .form-label {
-            top: -0.5rem;
-            font-size: 0.75rem;
-            color: #919EAB;
-        }
-        input::placeholder {
-            color: transparent;
-        }
-        input:focus::placeholder {
-            color: #999;
-        }
-        input:focus {
-            border-color: #3366FF;
-            outline: none;
-        }
-        input[type="text"],
-        input[type="email"],
-        input[type="password"] {
-            width: 100%;
-            padding: 1rem 0.75rem;
-            border: 1px solid #e1e1e1;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: all 0.2s ease;
-            background: transparent;
-        }
-        .register-button {
-            width: 100%;
-            padding: 0.875rem;
-            background: #3366FF;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s;
-            margin-top: 1rem;
-            position: relative;
-            font-family: 'Public Sans'
-        }
 
-        .register-button:disabled {
-            opacity: 0.7;
-            cursor: not-allowed;
-        }
-
-        .register-button.loading {
-            color: transparent;
-        }
-
-        .register-button.loading::after {
-            content: "";
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            top: 50%;
-            left: 50%;
-            margin: -10px 0 0 -10px;
-            border: 3px solid rgba(255,255,255,0.3);
-            border-radius: 50%;
-            border-top-color: #fff;
-            animation: spin 1s ease-in-out infinite;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        .register-button:hover {
-            background: #3951cc;
-        }
-        .login-link {
-            text-align: center;
-            margin-top: 1.5rem;
-        }
-        .login-link a {
-            color: #3366FF;
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-family: 'Public Sans'
-        }
-        .alert {
-            padding: 1rem;
-            border-radius: 8px;
-            margin-bottom: 1.5rem;
-            background: #FFF4F4;
-            color: #FF3B30;
-            border: 1px solid #FFE5E5;
-            text-align: left;
-            font-size: 0.875rem;
-            font-family: 'Public Sans'
-        }
     </style>
     <script>
         function copyEmailToUsername() {
@@ -160,12 +21,12 @@ letter-spacing: 0px;
     </script>
 </head>
 <body>
-    <div class="register-container">
+    <div class="card">
         <img src="${url.resourcesPath}/img/logo.png" alt="Logo" class="logo"/>
-        <h3 class="register-title">Register</h3>
+        <h3 >Register</h3>
         
         <#if message?has_content && message.type = 'error'>
-            <div class="alert alert-error">
+            <div class="error-msg">
                 ${message.summary?no_esc}
             </div>
         </#if>
@@ -204,7 +65,7 @@ letter-spacing: 0px;
                 <label for="password-confirm" class="form-label">Confirm password</label>
             </div>
 
-            <button type="submit" id="kc-register" class="register-button">${msg("doRegister")}</button>
+            <button type="submit" id="kc-register" class="primary">${msg("doRegister")}</button>
         </form>
 
         <div class="login-link">
