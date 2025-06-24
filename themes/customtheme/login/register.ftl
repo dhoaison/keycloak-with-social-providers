@@ -45,7 +45,7 @@ form {
             
             <div class="input-wrapper">
                 <input type="text" id="fullName" name="fullName" 
-                    value="${((register.formData.firstName)!'')} ${((register.formData.lastName)!'')}"
+                    value="${((register.formData.firstName)!'')}${((register.formData.lastName)!'')}"
                     placeholder="" required autofocus />
                 <label for="fullName" class="form-label">Full name</label>
             </div>
