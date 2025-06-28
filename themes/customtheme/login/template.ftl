@@ -7,6 +7,7 @@
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="https://dhoaison.github.io/keycloak-with-social-providers/styles.css">
 
     <#if properties.meta?has_content>
         <#list properties.meta?split(' ') as meta>
@@ -152,7 +153,7 @@
             </#if>
         </#if>
       </header>
-      <div id="kc-content">
+      <div id="kc-content" class="card">
         <div id="kc-content-wrapper">
 
           <#-- App-initiated actions should not see warning messages about the need to complete the action -->
