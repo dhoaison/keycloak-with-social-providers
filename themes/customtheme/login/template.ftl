@@ -8,16 +8,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="robots" content="noindex, nofollow">
     <link rel="stylesheet" href="https://dhoaison.github.io/keycloak-with-social-providers/styles.css">
-    <style>
-     .kc-content-wrapper {
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-     }
-     .card {
-        max-width: 700px
-     }
-    </style>
+ 
     <#if properties.meta?has_content>
         <#list properties.meta?split(' ') as meta>
             <meta name="${meta?split('==')[0]}" content="${meta?split('==')[1]}"/>
@@ -92,6 +83,16 @@
             );
         </script>
     </#if>
+    <style>
+    .kc-content-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .card {
+            max-width: 700px
+        }
+    </style>
 </head>
 
 <body class="${properties.kcBodyClass!}" data-page-id="login-${pageId}">
@@ -163,7 +164,7 @@
         </#if>
       </header>
       <div id="kc-content" class="card">
-        <div id="kc-content-wrapper">
+        <div id="kc-content-wrapper" class="kc-content-wrapper">
 
           <#-- App-initiated actions should not see warning messages about the need to complete the action -->
           <#-- during login.                                                                               -->
