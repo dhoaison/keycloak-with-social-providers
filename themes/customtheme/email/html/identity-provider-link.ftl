@@ -26,10 +26,10 @@
         <!-- Content -->
         <div class="p-6">
             <p class="text-gray-700 mb-4">
-                Hello <strong>${identityProviderContext.username}</strong>,
+                Hello <strong>user</strong>,
             </p>
             <p class="text-gray-700 mb-4">
-                We received a request to link your <strong>${identityProviderAlias}</strong> account to your Gnosis TMS account. This will allow you to sign in using your social account credentials.
+                We received a request to link your social account to your Gnosis TMS account. This will allow you to sign in using your social account credentials.
             </p>
             <p class="text-gray-700 mb-6">
                 If this was you, please click the button below to complete the account linking process.
