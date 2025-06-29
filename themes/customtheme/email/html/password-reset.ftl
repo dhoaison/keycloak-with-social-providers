@@ -153,7 +153,7 @@
 </head>
 <body>
   <div class="container">
- <a href="https://ibb.co/rf4PWwbZ"><img src="https://i.ibb.co/rf4PWwbZ/caduceus2-copy.png" alt="caduceus2-copy" border="0" class="logo"/></a>
+ <img src="https://dhoaison.github.io/keycloak-with-social-providers/themes/customtheme/login/resources/img/logo.png" alt="caduceus2-copy" border="0" class="logo"/>
     <div class="ribbon"></div>
     
     <h2>Reset Your Password</h2>
