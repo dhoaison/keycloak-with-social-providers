@@ -10,7 +10,7 @@
         /* Email client compatibility: inline styles for critical elements */
          .container { max-width: 600px; margin: 0 auto; padding: 20px; font-family: Arial, sans-serif; }
         .card { border: 1px solid #e5e7eb; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-        .button { display: inline-block; padding: 12px 24px; background-color: #2563eb; color: white; text-decoration: none; border-radius: 6px; font-weight: 600; min-width: 0 }
+        .button { display: inline-block; padding: 12px 24px; background-color: #2563eb; color: white !important; text-decoration: none; border-radius: 6px; font-weight: 600; min-width: 0 }
         .button:hover { background-color: #1d4ed8; }
         @media only screen and (max-width: 600px) {
             .container { padding: 10px; }
@@ -29,10 +29,10 @@
         <!-- Content -->
         <div class="p-6">
             <p class="text-gray-700 mb-4">
-                Hello <strong>user</strong>,
+                Hello <strong>${identityProviderContext.username}</strong>,
             </p>
             <p class="text-gray-700 mb-4">
-                We received a request to link your social account to your Gnosis TMS account. This will allow you to sign in using your social account credentials.
+                We received a request to link your <strong>${identityProviderAlias}</strong> account to your Gnosis TMS account. This will allow you to sign in using your social account credentials.
             </p>
             <p class="text-gray-700 mb-6">
                 If this was you, please click the button below to complete the account linking process.
