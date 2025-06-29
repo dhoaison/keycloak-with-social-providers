@@ -3,14 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>${msg("identityProviderLinkSubject")}</title>
+    <title>Link Your Social Account</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://dhoaison.github.io/keycloak-with-social-providers/styles.css">
     <style>
         /* Email client compatibility: inline styles for critical elements */
-        .container { max-width: 600px; margin: 0 auto; padding: 20px; font-family: Arial, sans-serif; }
-        .card { border: 1px solid #e5e7eb; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-        .button { display: inline-block; padding: 12px 24px; background-color: #2563eb; color: white; text-decoration: none; border-radius: 6px; font-weight: 600; }
-        .button:hover { background-color: #1d4ed8; }
+        .container { max-width: 600px; margin: 0 auto; padding: 20px}
         @media only screen and (max-width: 600px) {
             .container { padding: 10px; }
             .button { width: 100%; text-align: center; }
@@ -21,20 +19,24 @@
     <div class="container bg-white card">
         <!-- Header with branding -->
         <div class="text-center py-6 border-b border-gray-200">
-            <h1 class="text-2xl font-bold text-gray-800">${msg("identityProviderLinkSubject")}</h1>
-            <p class="text-sm text-gray-600">Secure Account Linking for ${realmName}</p>
+            <h1 class="text-2xl font-bold text-gray-800">Link Your Social Account</h1>
+            <p class="text-sm text-gray-600">Secure Account Linking for Gnosis TMS</p>
         </div>
 
         <!-- Content -->
         <div class="p-6">
             <p class="text-gray-700 mb-4">
-                ${msg("identityProviderLinkBodyHtml", identityProviderAlias, realmName, identityProviderContext.username, link)}
+                Hello <strong>${identityProviderContext.username}</strong>,
             </p>
-            <div class="text-center">
-                <a href="${link}" class="button">
-                    ${msg("identityProviderLinkClickHere")}
-                </a>
-            </div>
+            <p class="text-gray-700 mb-4">
+                We received a request to link your <strong>${identityProviderAlias}</strong> account to your Gnosis TMS account. This will allow you to sign in using your social account credentials.
+            </p>
+            <p class="text-gray-700 mb-6">
+                If this was you, please click the button below to complete the account linking process.
+            </p>
+            <a href="${link}" class="button">
+                <button class="primary">Link Account</button>
+            </a>
         </div>
 
         <!-- Footer -->
