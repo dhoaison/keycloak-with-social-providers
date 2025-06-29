@@ -7,8 +7,17 @@
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="robots" content="noindex, nofollow">
-<link rel="stylesheet" href="https://dhoaison.github.io/keycloak-with-social-providers/styles.css">
-
+    <link rel="stylesheet" href="https://dhoaison.github.io/keycloak-with-social-providers/styles.css">
+    <style>
+     .kc-content-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+     }
+     .card {
+        max-width: 700px
+     }
+    </style>
     <#if properties.meta?has_content>
         <#list properties.meta?split(' ') as meta>
             <meta name="${meta?split('==')[0]}" content="${meta?split('==')[1]}"/>
