@@ -33,10 +33,16 @@ form {
     <div class="card">
         <img src="${url.resourcesPath}/img/logo.png" alt="Logo" class="logo"/>
         <h3 >Register</h3>
-        
-        <#if message?has_content && message.type = 'error'>
-            <div class="error-msg">
-                ${message.summary?no_esc}
+     <#if message?has_content && message.type = 'error'>
+            <div class="alert alert-error error-msg">
+                <#assign errors = message.summary?split("<br>")>
+                    <#list errors as error>
+                        <p>${error}
+                        <script>
+                            document.getElementById('email').focus();
+                        </script>
+                        <#break> <!-- Stop after displaying the email error -->
+                </#list>
             </div>
         </#if>
 
