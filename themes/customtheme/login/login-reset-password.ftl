@@ -39,7 +39,10 @@
         </div>
     </div>
 
-    <div id="toast" class="toast">Password reset link has been sent to your email</div>
+    <div id="toast" class="toast text-center">
+    <div>Password reset link has been sent to your email.</div>
+     <div>You will be redirect to login page shortly</div>
+    </div>
 
     <script>
         const form = document.getElementById('kc-reset-password-form');
