@@ -37,7 +37,7 @@ form {
             <div class="alert alert-error error-msg">
                 <#assign errors = message.summary?split("<br>")>
                     <#list errors as error>
-                        <p>${error}
+                        <p class="text-center">${error}
                         <script>
                             document.getElementById('email').focus();
                         </script>
@@ -111,6 +111,9 @@ form {
             const btn = document.getElementById('kc-register');
             btn.disabled = true;
             btn.classList.add('loading');
+            
+            // Clear window history to prevent going back
+            window.history.replaceState(null, null, window.location.href);
             
             return true;
         }
